@@ -5,8 +5,12 @@ from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from models import db, User
+from dotenv import load_dotenv
+import os
 import bcrypt
 from itsdangerous import URLSafeTimedSerializer
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -17,14 +21,14 @@ limiter = Limiter(
 )
 
 # ── CONFIG ──────────────────────────────────────────
-app.config['SECRET_KEY']                     = 'your-super-secret-key'
+app.config['SECRET_KEY']                     = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI']        = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['MAIL_SERVER']                    = 'smtp.gmail.com'
 app.config['MAIL_PORT']                      = 587
 app.config['MAIL_USE_TLS']                   = True
-app.config['MAIL_USERNAME']                  = 'jawbreaker377@gmail.com'
-app.config['MAIL_PASSWORD']                  = 'nlmjjfhkeiseuzzw'
+app.config['MAIL_USERNAME']                  = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD']                  = os.getenv('MAIL_PASSWORD')
 
 # ── INIT EXTENSIONS ─────────────────────────────────
 db.init_app(app)
