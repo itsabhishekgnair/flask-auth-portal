@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Hello, {{ user.username }}! 👋</h1>
+    <p>You are successfully logged in.</p>
+
+    <div class="info-card">
+        <h3>Your Account Details</h3>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Verified:</strong>
+            {% if user.is_verified %} ✅ Yes
+            {% else %} ❌ No
+            {% endif %}
+        </p>
+        <p><strong>Member since:</strong> {{ user.created_at.strftime('%B %d, %Y') }}</p>
+    </div>
+
+    <a href="/logout" class="btn btn-danger" style="width:auto; padding:12px 30px; display:inline-block;">Logout</a>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="auth-box">
+    <h2>Welcome Back 👋</h2>
+    <p class="subtitle">Login to your account</p>
+
+    <form action="{{ url_for('login') }}" method="POST">
+
+        <div class="form-group">
+            <label>Username or Email</label>
+            <input type="text" name="login_input"
+                   placeholder="Enter username or mail" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password"
+                   placeholder="Your password" required>
+        </div>
+
+        <div class="form-group checkbox">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Remember me</label>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <!-- NEW: Forgot Password Link -->
+    <p class="switch-link">
+        <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+    </p>
+
+    <p class="switch-link">
+        Don't have an account? <a href="{{ url_for('register') }}">Register here</a>
+    </p>
+</div>
+{% endblock %}

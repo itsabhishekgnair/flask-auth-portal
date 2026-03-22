@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="auth-box">
+    <h2>Create Account 📝</h2>
+    <p class="subtitle">Fill in your details to register</p>
+
+    <form action="/register" method="POST">
+
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username"
+                   placeholder="Choose a username"
+                   value="{{ request.form.get('username', '') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email"
+                   placeholder="your@email.com"
+                   value="{{ request.form.get('email', '') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password"
+                   placeholder="Minimum 6 characters" required>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password"
+                   placeholder="Repeat your password" required>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <p class="switch-link">
+        Already have an account? <a href="/login">Login here</a>
+    </p>
+</div>
+{% endblock %}
